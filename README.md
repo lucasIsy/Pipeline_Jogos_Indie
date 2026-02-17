@@ -2,14 +2,15 @@
 
 # Data Pipeline: Steam & Twitch Integration
 
-Este projeto automatiza a extração e o processamento de métricas de engajamento de jogos, superando bloqueios de *scraping* (Cloudflare) através de integrações via APIs oficiais. O sistema alimenta um ecossistema de BI para análise de tendências de mercado.
+Este pipeline automatiza a coleta, processamento e modelagem de dados das APIs oficiais da Steam e Twitch. O sistema foi desenvolvido para fornecer uma infraestrutura de dados estruturada e escalável, atendendo aos requisitos de um projeto de análise de dados focado no crescimento de jogos independentes.
 
-## 🎯 Propósito e Solução
-A extração via *webscraping* (SteamDB/TwitchTracker) era instável devido a bloqueios. Este pipeline soluciona o problema utilizando autenticação OAuth e requisições oficiais, garantindo **escalabilidade** e **integridade dos dados**.
-
+## Propósito e Metas
+* **Expectativa Analítica:** Prover dados históricos íntegros para identificar padrões de crescimento exponencial em jogos indie.
+* **Eficiência de Recursos:** Garantir a entrega dos dados utilizando o mínimo de recursos computacionais através de processamento incremental e compactação Delta.
+* **Otimização de Infraestrutura:** Reduzir custos de armazenamento e processamento, mantendo uma arquitetura de baixo overhead operacional.
 ---
 
-## 🏗️ Arquitetura e Decisões Técnicas
+## Arquitetura e Decisões Técnicas
 
 ### 1. Ingestão e Orquestração
 * **Workflow:** Extrações via `HTTP/OAuth` a cada 10 minutos para o **Google Cloud Storage (GCS)**.
