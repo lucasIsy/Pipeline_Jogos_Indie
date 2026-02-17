@@ -1,0 +1,13 @@
+
+.env
+.vscode/
+
+dbt-daily-transformation/target/
+dbt-daily-transformation/dbt_packages/
+dbt-daily-transformation/dbt_internal_packages/
+dbt-daily-transformation/logs/
+
+pipeline-twitch-steam/logs/
+__pycache__/
+*.pyc
+
