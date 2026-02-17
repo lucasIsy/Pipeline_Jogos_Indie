@@ -25,16 +25,42 @@ def get_twitch_auth_token(client_id, client_secret):
     response.raise_for_status()
     return response.json()['access_token']
 
-def get_twitch_streams(client_id, auth_token, game_ids_list):
+def get_twitch_streams(client_id, auth_token, game_ids_dict):
     """Busca as streams ao vivo para uma lista de IDs de jogos."""
     import requests # <--- Lazy Import
 
     url = "https://api.twitch.tv/helix/streams"
-    headers = {'Client-ID': client_id, 'Authorization': f'Bearer {auth_token}'}
-    params = {'game_id': game_ids_list, 'first': 100}
-    response = requests.get(url, headers=headers, params=params)
-    response.raise_for_status()
-    return response.json()
+    headers = {
+        'Client-ID': client_id, 
+        'Authorization': f'Bearer {auth_token}'
+    }
+
+    all_streams = []
+    cursor = None
+
+    while True:
+        params = {
+            'game_id': game_ids_dict,
+            'first': 100,
+            'after': cursor
+        }
+        
+        response = requests.get(url, headers=headers, params=params)
+        response.raise_for_status()
+        
+        data_json = response.json()
+        
+        if 'data' not in data_json:
+            raise ValueError(f"API da Twitch retornou arquivo sem dados: {data_json}")
+            
+        all_streams.extend(data_json.get('data', []))
+        
+        cursor = data_json.get('pagination', {}).get('cursor')
+        
+        if not cursor:
+            break
+
+    return all_streams
 
 def get_steam_player_count(api_key, app_id):
     """Busca a contagem de jogadores para um app_id (retorna None em falha)."""
