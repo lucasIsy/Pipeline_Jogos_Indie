@@ -1,0 +1,34 @@
+name: CI Airflow
+
+on:
+  push:
+    paths:
+      - 'airflow/**'
+      - 'requirements.txt'
+
+jobs:
+  airflow-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run:
+          pip install -r requirements.txt
+
+      - name: Static Analysis (Linting)
+        run: ruff check airflow/
+
+      - name: Run Integrity & Unit Tests
+        env:
+          PYTHONPATH: ${{ github.workspace }}/airflow
+          AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
+          AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////tmp/airflow.db
+        run: |
+          pytest airflow/tests/

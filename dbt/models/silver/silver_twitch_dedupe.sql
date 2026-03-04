@@ -21,7 +21,7 @@ deduplicado AS (
         ingested_at_utc,
         viewer_count,
         stream_id
-    FROM workspace.default_staging.stg_twitch
+    FROM silver_twitch_dedupe
 QUALIFY row_number() OVER (
     PARTITION BY stream_id, ingested_at_utc
     ORDER BY ingested_at_utc DESC

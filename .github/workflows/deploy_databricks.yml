@@ -1,0 +1,22 @@
+name: Deploy to Databricks Repos
+
+on:
+  workflow_run:
+    workflows: ["CI dbt Validation", "CI Airflow"]
+    types:
+      - completed
+    branches:
+      - main
+
+jobs:
+  sync-repo:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Databricks Repo via API
+        run: |
+          curl -X PATCH \
+          -H "Authorization: Bearer ${{ secrets.DATABRICKS_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          "https://${{ secrets.DATABRICKS_HOST }}/api/2.0/repos/${{ secrets.REPO_ID }}" \
+          -d '{"branch": "main"}'

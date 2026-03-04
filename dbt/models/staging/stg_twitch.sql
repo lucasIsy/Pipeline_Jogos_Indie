@@ -1,13 +1,22 @@
-with
-    source as (
+{{ config(
+    materialized='incremental',
+    incremental_strategy='append',
+    unique_key=['ingested_at_utc','twitch_game_id'],
+    liquid_clustered_by=['ingested_at_utc'],
+    file_format='delta'
+) }}
 
+with
+source as (
         select * from {{ source("bronze_data", "bronze_twitch") }}
+        {% if is_incremental() %}
+            where ingestion_timestamp_utc > (select max(ingested_at_utc) from {{ this }})
+        {% endif %}
     ),
 
     flattened as (
         select
             ingestion_timestamp_utc,
-            -- A função explode separa o array em linhas
             explode(twitch_data) as stream_info
         from source
     )

@@ -1,0 +1,11 @@
+default:
+  outputs:
+    dev:
+      type: databricks
+      database: workspace
+      host: "{{ env_var('DBT_DATABRICKS_HOST') }}"
+      http_path: "{{ env_var('DBT_DATABRICKS_PATH') }}"
+      schema: default
+      token: "{{ env_var('DBT_DATABRICKS_TOKEN') }}"
+      auth_type: pat
+  target: dev

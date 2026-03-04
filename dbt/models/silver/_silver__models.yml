@@ -7,7 +7,6 @@ models:
     config:
       contract:
         enforced: true
-          
     columns:
       - name: ingested_at_utc
         data_type: timestamp
@@ -39,7 +38,6 @@ models:
     config:
       contract:
         enforced: true
-
     columns:
       - name: ingested_at_utc
         data_type: timestamp
