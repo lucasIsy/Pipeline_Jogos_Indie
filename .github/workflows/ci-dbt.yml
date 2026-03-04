@@ -1,0 +1,49 @@
+name: CI dbt Validation
+
+on:
+  push:
+    branches-ignore: [main]
+    paths:
+      - 'dbt/**'
+  pull_request:
+    branches: [main]
+jobs:
+  dbt-validation:
+    runs-on: ubuntu-latest
+    
+    env:
+      DBT_DATABRICKS_HOST: ${{ secrets.DBT_DATABRICKS_HOST }}
+      DBT_DATABRICKS_TOKEN: ${{ secrets.DBT_DATABRICKS_TOKEN }}
+      DBT_DATABRICKS_PATH: ${{ secrets.DBT_DATABRICKS_PATH }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install dbt-databricks
+      
+      - name: dbt deps
+        run: |
+          cd dbt
+          dbt deps
+
+      - name: dbt Debug
+        run: |
+          cd dbt
+          dbt debug --target dev
+
+      - name: dbt Compile
+        run: |
+          cd dbt
+          dbt compile
+
+      - name: dbt Unit Tests
+        run: |
+          cd dbt
+          dbt test --select "test_type:unit"
