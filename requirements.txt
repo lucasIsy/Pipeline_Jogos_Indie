@@ -1,0 +1,15 @@
+# --- Core Transformation (dbt) ---
+dbt-databricks==1.8.*
+
+# --- Orchestration (Airflow) ---
+apache-airflow==3.1.7
+apache-airflow-providers-databricks
+
+# --- Ingestão e APIs ---
+requests==2.32.0
+
+# --- Qualidade e CI/CD ---
+pytest==8.*
+pytest-mock==3.*
+requests-mock==1.12.*
+ruff==0.4.*

@@ -1,0 +1,26 @@
+# --- Segurança ---
+.env
+.env.*
+airflow_dag/standalone_admin_password.txt
+
+# --- dbt ---
+dbt/target/
+dbt/dbt_packages/
+dbt/dbt_internal_packages/
+dbt/dbt_modules/
+dbt/logs/
+
+# --- Airflow e Python ---
+airflow/logs/
+airflow/airflow.db
+airflow/config/airflow.cfg
+airflow/webserver_config.py
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# --- IDEs e Sistema ---
+.vscode/
+.idea/
+.DS_Store
