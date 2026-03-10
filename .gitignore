@@ -11,10 +11,10 @@ dbt/dbt_modules/
 dbt/logs/
 
 # --- Airflow e Python ---
-airflow/logs/
-airflow/airflow.db
-airflow/config/airflow.cfg
-airflow/webserver_config.py
+airflow_docker/logs/
+airflow_docker/airflow.db
+airflow_docker/config/airflow.cfg
+airflow_docker/webserver_config.py
 __pycache__/
 *.pyc
 .venv/
