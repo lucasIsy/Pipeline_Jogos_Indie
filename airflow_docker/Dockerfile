@@ -5,5 +5,4 @@ USER airflow
 RUN pip install --no-cache-dir \
     databricks-sdk \
     requests
-
 USER airflow
