@@ -1,8 +1,9 @@
+![Image](https://github.com/user-attachments/assets/148fe3c6-5aae-4b9b-b0dc-b71d8dfb3c64)
 # Contexto do projeto
 
 Esse data lakehouse foi criado para fornecer dados pro meu projeto de análise, no qual investiga como a criação de conteúdo está fazendo jogos indies terem um crescimento exponencial. Abaixo você verá alguns problemas que enfrentei ao longo da criação ao mesmo tempo que fornece detalhes sobre ela.
 
-![Análise dos jogos indies](https://app.powerbi.com/view?r=eyJrIjoiYWExNmJhZDUtOTk2Zi00NGI0LThkYmEtYTM2MmIxYzhhM2QxIiwidCI6IjllOTQ2M2EwLWMyNTEtNGNmNi04NDgxLWJlNzRmNWY2YzQ0YiJ9&pageName=291505a107e08583c527)
+[Análise dos jogos indies](https://app.powerbi.com/view?r=eyJrIjoiYWExNmJhZDUtOTk2Zi00NGI0LThkYmEtYTM2MmIxYzhhM2QxIiwidCI6IjllOTQ2M2EwLWMyNTEtNGNmNi04NDgxLWJlNzRmNWY2YzQ0YiJ9&pageName=291505a107e08583c527)
 
 ## Detalhes e Problemas Resolvidos
 
